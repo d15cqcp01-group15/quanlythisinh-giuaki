@@ -1,6 +1,6 @@
 package com.example.quanlythisinh_giuaki.database;
 
-public class Khoa {
+public class Department {
 
     public static final String TABLE_NAME = "khoa";
     public static final String COLUMN_MAKHOA = "id";
@@ -17,10 +17,10 @@ public class Khoa {
                     + COLUMN_TENKHOA + " TEXT,"
                     + ")";
 
-    public Khoa() {
+    public Department() {
     }
 
-    public Khoa(int makhoa, String tenkhoa) {
+    public Department(int makhoa, String tenkhoa) {
         this.tenkhoa = tenkhoa;
         this.makhoa = makhoa;
     }

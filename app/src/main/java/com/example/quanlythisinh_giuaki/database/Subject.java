@@ -1,6 +1,6 @@
 package com.example.quanlythisinh_giuaki.database;
 
-public class Mon {
+public class Subject {
 
     public static final String TABLE_NAME = "mon";
     public static final String COLUMN_TENMON = "tenmon";
@@ -11,7 +11,7 @@ public class Mon {
     private String mamon;
     private int sotiet;
 
-    public Mon(String tenmon, String mamon, int sotiet) {
+    public Subject(String tenmon, String mamon, int sotiet) {
         this.tenmon = tenmon;
         this.mamon = mamon;
         this.sotiet = sotiet;

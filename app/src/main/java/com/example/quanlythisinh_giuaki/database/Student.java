@@ -1,6 +1,6 @@
 package com.example.quanlythisinh_giuaki.database;
 
-public class Sinhvien {
+public class Student {
 
     public static final String TABLE_NAME = "sinhvien";
     public static final String COLUMN_MASV = "masv";
@@ -31,7 +31,7 @@ public class Sinhvien {
                     + "REFERENCES khoa(makhoa),"
                     + ")";
 
-    public Sinhvien() {
+    public Student() {
     }
 
     public static String getTableName() {

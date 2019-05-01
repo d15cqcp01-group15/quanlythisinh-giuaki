@@ -26,9 +26,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // create notes table
-        db.execSQL(Diem.CREATE_TABLE);
-        db.execSQL(Khoa.CREATE_TABLE);
-        db.execSQL(Mon.CREATE_TABLE);
+        db.execSQL(Score.CREATE_TABLE);
+        db.execSQL(Department.CREATE_TABLE);
+        db.execSQL(Subject.CREATE_TABLE);
         db.execSQL(Sinhvien.CREATE_TABLE);
     }
 
@@ -36,24 +36,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + Diem.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Score.TABLE_NAME);
 
         // Create tables again
         onCreate(db);
     }
 
-    public List<Diem> getDiems(){
+    public List<Score> getDiems(){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor result = db.rawQuery("SELECT " + Sinhvien.COLUMN_HOTEN + ", " + Mon.COLUMN_TENMON
-                        + ", " + Diem.COLUMN_DIEM
-                        + " FROM " + Diem.TABLE_NAME + " INNER JOIN " + Mon.TABLE_NAME + " ON " +
-                        Diem.COLUMN_MAMON + " = " + Mon.COLUMN_MAMON + Diem.TABLE_NAME + " INNER JOIN " + Sinhvien.TABLE_NAME + " ON " +
-                        Diem.COLUMN_MAMON + " = " + Mon.COLUMN_MAMON + Diem.TABLE_NAME , new String[] {});
+        Cursor result = db.rawQuery("SELECT " + Sinhvien.COLUMN_HOTEN + ", " + Subject.COLUMN_TENMON
+                        + ", " + Score.COLUMN_DIEM
+                        + " FROM " + Score.TABLE_NAME + " INNER JOIN " + Subject.TABLE_NAME + " ON " +
+                        Score.COLUMN_MAMON + " = " + Subject.COLUMN_MAMON + Score.TABLE_NAME + " INNER JOIN " + Sinhvien.TABLE_NAME + " ON " +
+                        Score.COLUMN_MAMON + " = " + Subject.COLUMN_MAMON + Score.TABLE_NAME , new String[] {});
 
         if (result != null)
 
             result.close();
-        return new ArrayList<Diem>();
+        return new ArrayList<Score>();
     }
 }

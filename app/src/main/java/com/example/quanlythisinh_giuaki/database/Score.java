@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.List;
 
-public class Diem {
+public class Score {
 
     public static final String TABLE_NAME = "diem";
     public static final String COLUMN_MASV = "masv";
@@ -28,10 +28,10 @@ public class Diem {
                     + "PRIMARY KEY AUTOINCREMENT (" + COLUMN_MASV + "," + COLUMN_MAMON + ")"
                     + ")";
 
-    public Diem() {
+    public Score() {
     }
 
-    public Diem(int masv, int mamon, float diem) {
+    public Score(int masv, int mamon, float diem) {
         this.mamon = mamon;
         this.masv = masv;
         this.diem = diem;
