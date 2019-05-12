@@ -97,6 +97,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return students;
     }
 
+    public List<Subject> getSubjects(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Subject> subjects = new ArrayList<Subject>();
+        Cursor result = db.rawQuery("SELECT " + Subject.COLUMN_MAMON + ", " + Subject.COLUMN_TENMON + ", " + Subject.COLUMN_SOTIET
+                + " FROM " + Subject.TABLE_NAME, new String[] {});
+
+        result.moveToFirst();
+
+        while(result.isAfterLast() == false){
+            Subject sub = new Subject();
+            sub.setMamon(result.getInt(result.getColumnIndex(Subject.COLUMN_MAMON)));
+            sub.setTenmon(result.getString(result.getColumnIndex(Subject.COLUMN_TENMON)));
+            sub.setSotiet(result.getInt(result.getColumnIndex(Subject.COLUMN_SOTIET)));
+            subjects.add(sub);
+            result.moveToNext();
+        }
+        result.close();
+        return subjects;
+    }
+
     public void insertStudent(Student st){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -127,7 +147,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Subject.COLUMN_MAMON, sub.getMamon());
         values.put(Subject.COLUMN_TENMON, sub.getTenmon());
         values.put(Subject.COLUMN_SOTIET, sub.getSotiet());
         db.insert(Subject.TABLE_NAME, null, values);
