@@ -88,6 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while(result.isAfterLast() == false){
             Student st = new Student();
             st.setHoten(result.getString(result.getColumnIndex(Student.COLUMN_HOTEN)));
+            st.setMasv(result.getInt(result.getColumnIndex(Student.COLUMN_MASV)));
             st.setMakhoa(result.getInt(result.getColumnIndex(Student.COLUMN_MASV)));
             students.add(st);
             result.moveToNext();

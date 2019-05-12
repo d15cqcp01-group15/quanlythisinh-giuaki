@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.quanlythisinh_giuaki.Adapter.NhapdiemAdapter;
 import com.example.quanlythisinh_giuaki.Adapter.StudentAdapter;
 import com.example.quanlythisinh_giuaki.R;
+import com.example.quanlythisinh_giuaki.activity.CreateNewStudent;
 import com.example.quanlythisinh_giuaki.database.DatabaseHelper;
 import com.example.quanlythisinh_giuaki.database.Department;
 import com.example.quanlythisinh_giuaki.database.Student;
@@ -34,7 +35,9 @@ public class StudentFragment extends Fragment implements OnClickListener {
     private TextView tvDep;
     private Spinner department;
 
+    private int currDep;
     private Button btnAddStudent;
+    private ArrayList<Department> deps = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private StudentAdapter mAdapter;
@@ -56,6 +59,13 @@ public class StudentFragment extends Fragment implements OnClickListener {
         super.onCreate(savedInstanceState);
     }
 
+    public void onResume(){
+        super.onResume();
+        if(deps.size() != 0){
+            loadStudent(currDep);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +74,7 @@ public class StudentFragment extends Fragment implements OnClickListener {
 
         addControls(view);
         addEvents();
-        loadStudent(1);
+        loadStudent(currDep);
         return view;
     }
 
@@ -79,19 +89,21 @@ public class StudentFragment extends Fragment implements OnClickListener {
         recyclerView.setAdapter(mAdapter);
         recyclerView.getAdapter().notifyDataSetChanged();
 
+        btnAddStudent = view.findViewById(R.id.btnAddStudent);
+
         tvDep= view.findViewById(R.id.tvDep);
         department = (Spinner) view.findViewById(R.id.cbDep);
-        ArrayList<Department> deps = mydb.getDepartments();
+        deps = mydb.getDepartments();
 
-//        List<String> depNames = new ArrayList<>();
-//        for(Department d :deps){
-//            depNames.add(d.toString());
-//        }
+        if(deps.size() == 0)
+            return;
+        currDep = deps.get(0).getMakhoa();
         tvDep.setText(deps.get(0).toString());
         CustomSpinnerAdapter adapterDep = new CustomSpinnerAdapter(getActivity(), deps, new CustomSpinnerAdapter.ISpinnerCallback<Department>(){
             @Override
             public void onItemClicked(Department dep) {
                 hideSpinner(department);
+                currDep = dep.getMakhoa();
                 tvDep.setText(dep.toString());
                 loadStudent(dep.getMakhoa());
             }
@@ -104,6 +116,13 @@ public class StudentFragment extends Fragment implements OnClickListener {
 
     public void addEvents(){
         tvDep.setOnClickListener(this);
+
+        btnAddStudent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateNewStudent.start(getContext());
+            }
+        });
     }
 
     @Override
@@ -134,6 +153,5 @@ public class StudentFragment extends Fragment implements OnClickListener {
         students.addAll(_students);
         mAdapter.notifyDataSetChanged();
     }
-
 
 }
