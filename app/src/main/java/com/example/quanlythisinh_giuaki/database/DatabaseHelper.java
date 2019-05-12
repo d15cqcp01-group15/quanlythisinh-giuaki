@@ -102,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Subject> subjects = new ArrayList<Subject>();
         Cursor result = db.rawQuery("SELECT " + Subject.COLUMN_MAMON + ", " + Subject.COLUMN_TENMON + ", " + Subject.COLUMN_SOTIET
                 + " FROM " + Subject.TABLE_NAME, new String[] {});
+    
 
         result.moveToFirst();
 
@@ -115,6 +116,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         result.close();
         return subjects;
+    }
+
+    public ArrayList<Score> getScores(int maMon){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Score> scores = new ArrayList<Score>();
+        Cursor result = db.rawQuery("SELECT *"
+                + " FROM " + Score.TABLE_NAME
+                + " WHERE " + Score.COLUMN_MAMON + " = " + String.valueOf(maMon), new String[] {});
+
+        Score sc = new Score();
+            sc.setMamon(result.getInt(result.getColumnIndex(Score.COLUMN_MAMON)));
+            sc.setMasv(result.getInt(result.getColumnIndex(Score.COLUMN_MASV)));
+            sc.setDiem(result.getFloat(result.getColumnIndex(Score.COLUMN_DIEM)));
+            scores.add(sc);
+            result.moveToNext();
+        }
+        result.close();
+        return scores;
     }
 
     public void insertStudent(Student st){
