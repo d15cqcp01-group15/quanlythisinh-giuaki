@@ -22,10 +22,10 @@ public class Score {
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_MASV + "INT,"
-                    + COLUMN_MAMON + "INT,"
-                    + COLUMN_DIEM + "FLOAT,"
-                    + "PRIMARY KEY AUTOINCREMENT (" + COLUMN_MASV + "," + COLUMN_MAMON + ")"
+                    + COLUMN_MASV + " INT,"
+                    + COLUMN_MAMON + " INT,"
+                    + COLUMN_DIEM + " FLOAT,"
+                    + "PRIMARY KEY (" + COLUMN_MASV + "," + COLUMN_MAMON + ")"
                     + ")";
 
     public Score() {
