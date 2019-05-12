@@ -9,6 +9,11 @@ public class Subject {
 
     private String tenmon;
     private int mamon;
+
+    public static String getCreateTable() {
+        return CREATE_TABLE;
+    }
+
     private int sotiet;
 
     public Subject(String tenmon, int sotiet) {
@@ -23,6 +28,9 @@ public class Subject {
                     + COLUMN_TENMON + " TEXT,"
                     + COLUMN_SOTIET + " INTEGER"
                     + ")";
+    public Subject(){
+
+    }
 
     public String getTenmon() {
         return tenmon;
