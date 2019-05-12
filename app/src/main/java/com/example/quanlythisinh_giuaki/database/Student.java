@@ -15,20 +15,20 @@ public class Student {
     private String phai ;
     private String ngaysinh ;
     private String diachi;
-    private String makhoa;
+    private int makhoa;
 
 
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_MASV + " INTEGER PRIMARY KEY,"
-                    + COLUMN_HOTEN + " TEXT,"
-                    + COLUMN_PHAI + " TEXT,"
-                    + COLUMN_NGAYSINH + " TEXT,"
-                    + COLUMN_DIACHI + " TEXT,"
-                    + "CONSTRAINT fk_khoa,"
-                    + "FOREIGN KEY (makhoa),"
-                    + "REFERENCES khoa(makhoa),"
+                    + COLUMN_MASV + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + COLUMN_HOTEN + " TEXT, "
+                    + COLUMN_PHAI + " TEXT, "
+                    + COLUMN_NGAYSINH + " TEXT, "
+                    + COLUMN_DIACHI + " TEXT, "
+                    + COLUMN_MAKHOA + " INTEGER NOT NULL, "
+                    + "FOREIGN KEY(makhoa) "
+                    + "REFERENCES "+ Department.TABLE_NAME+"(makhoa)"
                     + ")";
 
     public Student() {
@@ -78,11 +78,25 @@ public class Student {
         this.diachi = diachi;
     }
 
-    public String getMakhoa() {
+    public int getMakhoa() {
         return makhoa;
     }
 
-    public void setMakhoa(String makhoa) {
+    public void setMakhoa(int makhoa) {
+        this.makhoa = makhoa;
+    }
+
+    public Student(String hoten, int makhoa) {
+        this.hoten = hoten;
+        this.makhoa = makhoa;
+    }
+
+    public Student(String hoten, String phai, String ngaysinh, String diachi, int makhoa) {
+        this.masv = masv;
+        this.hoten = hoten;
+        this.phai = phai;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
         this.makhoa = makhoa;
     }
 }

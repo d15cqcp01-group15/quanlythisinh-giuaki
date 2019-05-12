@@ -8,21 +8,20 @@ public class Subject {
     public static final String COLUMN_SOTIET = "sotiet";
 
     private String tenmon;
-    private String mamon;
+    private int mamon;
     private int sotiet;
 
-    public Subject(String tenmon, String mamon, int sotiet) {
+    public Subject(String tenmon, int sotiet) {
         this.tenmon = tenmon;
-        this.mamon = mamon;
         this.sotiet = sotiet;
     }
 
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_MAMON + " INTEGER PRIMARY KEY,"
+                    + COLUMN_MAMON + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_TENMON + " TEXT,"
-                    + COLUMN_SOTIET + " INTEGER,"
+                    + COLUMN_SOTIET + " INTEGER"
                     + ")";
 
     public String getTenmon() {
@@ -33,11 +32,11 @@ public class Subject {
         this.tenmon = tenmon;
     }
 
-    public String getMamon() {
+    public int getMamon() {
         return mamon;
     }
 
-    public void setMamon(String mamon) {
+    public void setMamon(int mamon) {
         this.mamon = mamon;
     }
 
