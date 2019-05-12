@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.quanlythisinh_giuaki.Fragment.CustomSpinnerAdapter;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 public class CreateNewStudent extends AppCompatActivity implements OnClickListener {
 
     private TextView tvDep, edtName, edtGender, edtBirthDay, edtAddress, edtPhoneNumber;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
     private Spinner department;
 
     private int currDep_id = 0;
@@ -41,7 +45,7 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
 
     private void addControls(){
         edtAddress = findViewById(R.id.edtAddress);
-        edtGender = findViewById(R.id.editGender);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGender);
         edtName = findViewById(R.id.edtName);
         edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
         edtBirthDay = findViewById(R.id.edtBirthday);
@@ -74,11 +78,13 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
         btnSaveStudent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton) findViewById(selectedId);
                 Student st = new Student();
                 st.setHoten(edtName.getText().toString());
                 st.setDiachi(edtAddress.getText().toString());
                 st.setNgaysinh(edtBirthDay.getText().toString());
-                st.setPhai(edtGender.getText().toString());
+                st.setPhai(radioButton.getText().toString());
                 st.setMakhoa(currDep_id);
                 mydb.insertStudent(st);
                 finish();

@@ -50,6 +50,7 @@
             android:text="Giới tính:" />
         <RadioGroup
             android:layout_width="wrap_content"
+            android:id="@+id/radioGender"
             android:layout_marginRight="250dp"
           android:layout_height="wrap_content">
             <RadioButton
@@ -83,10 +84,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:ems="10"
             android:hint="DD/MM/YYYY"
-            android:inputType="date"
-            android:focusable="false"/>
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
     </LinearLayout>
 
     <LinearLayout
