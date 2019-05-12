@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        fake_data();
+//        fake_data();
     }
 
     public void fake_data(){
