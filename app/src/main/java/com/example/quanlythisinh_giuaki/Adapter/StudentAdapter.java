@@ -16,7 +16,6 @@ import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHolder> {
     private List<Student> students;
-    private ItemClickListener callback;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -30,11 +29,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
             stt = (TextView) view.findViewById(R.id.txtStt);
         }
 
-    }
-
-    public void setItemClickListener(ItemClickListener itemClickListener)
-    {
-        this.callback = itemClickListener;
     }
 
     public StudentAdapter(List<Student> students) {
@@ -55,13 +49,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
         Student st = students.get(position);
         holder.tenSv.setText(st.getHoten());
         holder.masv.setText(String.valueOf(st.getMasv()));
-        holder.stt.setText(String.valueOf(position));
-//        holder.itemView.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                callback.onClick(position);
-//            }
-//        });
+        holder.stt.setText(String.valueOf(position+1));
     }
 
     @Override
