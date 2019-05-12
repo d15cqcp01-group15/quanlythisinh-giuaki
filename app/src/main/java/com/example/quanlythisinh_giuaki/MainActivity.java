@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_department:
                     return true;
-                case R.id.navigation_score:
-                    return true;
                 case R.id.navigation_subject:
+                    return true;
+                case R.id.navigation_score:
                     return true;
             }
             return false;

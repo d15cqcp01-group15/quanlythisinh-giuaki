@@ -27,11 +27,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class StudentFragment extends Fragment implements OnClickListener {
 
     private TextView tvDep;
     private Spinner department;
+
     private Button btnAddStudent;
 
     private RecyclerView recyclerView;
@@ -59,14 +61,16 @@ public class StudentFragment extends Fragment implements OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.student_fragment, container, false);
-        mydb = new DatabaseHelper(getContext());
-        students = mydb.getStudents("1");
+
         addControls(view);
         addEvents();
+        loadStudent(1);
         return view;
     }
 
     public void addControls(View view){
+        mydb = new DatabaseHelper(getContext());
+
         recyclerView = view.findViewById(R.id.studentRecycleview);
         mAdapter = new StudentAdapter(students);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -79,16 +83,17 @@ public class StudentFragment extends Fragment implements OnClickListener {
         department = (Spinner) view.findViewById(R.id.cbDep);
         ArrayList<Department> deps = mydb.getDepartments();
 
-        List<String> depNames = new ArrayList<>();
-        for(Department d :deps){
-            depNames.add(deps.toString());
-        }
-        tvDep.setText(depNames.get(0));
-        CustomSpinnerAdapter adapterDep = new CustomSpinnerAdapter(getActivity(), depNames, new CustomSpinnerAdapter.ISpinnerCallback(){
+//        List<String> depNames = new ArrayList<>();
+//        for(Department d :deps){
+//            depNames.add(d.toString());
+//        }
+        tvDep.setText(deps.get(0).toString());
+        CustomSpinnerAdapter adapterDep = new CustomSpinnerAdapter(getActivity(), deps, new CustomSpinnerAdapter.ISpinnerCallback<Department>(){
             @Override
-            public void onItemClicked(String text) {
+            public void onItemClicked(Department dep) {
                 hideSpinner(department);
-                tvDep.setText(text);
+                tvDep.setText(dep.toString());
+                loadStudent(dep.getMakhoa());
             }
         });
 
@@ -98,7 +103,7 @@ public class StudentFragment extends Fragment implements OnClickListener {
     }
 
     public void addEvents(){
-
+        tvDep.setOnClickListener(this);
     }
 
     @Override
@@ -122,4 +127,13 @@ public class StudentFragment extends Fragment implements OnClickListener {
             department.performClick();
         }
     }
+
+    private void loadStudent(int dep_id){
+        List<Student> _students = mydb.getStudents(dep_id);
+        students.clear();
+        students.addAll(_students);
+        mAdapter.notifyDataSetChanged();
+    }
+
+
 }
