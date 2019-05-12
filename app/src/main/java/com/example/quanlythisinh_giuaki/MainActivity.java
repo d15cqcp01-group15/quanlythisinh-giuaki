@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.quanlythisinh_giuaki.Fragment.DepartmentFragment;
 import com.example.quanlythisinh_giuaki.Fragment.StudentFragment;
+import com.example.quanlythisinh_giuaki.Fragment.SubjectFragment;
 import com.example.quanlythisinh_giuaki.database.DatabaseHelper;
 import com.example.quanlythisinh_giuaki.database.Department;
 import com.example.quanlythisinh_giuaki.database.Student;
@@ -28,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_student:
                     viewPager.setCurrentItem(0);
                     return true;
+                case R.id.navigation_subject:
+                    viewPager.setCurrentItem(1);
+                    return true;
                 case R.id.navigation_department:
+                    viewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_score:
-                    return true;
-                case R.id.navigation_subject:
                     return true;
             }
             return false;
@@ -46,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFrag(new StudentFragment());
+        pagerAdapter.addFrag(new SubjectFragment());
+        pagerAdapter.addFrag(new DepartmentFragment());
         viewPager.setAdapter(pagerAdapter);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-//        fake_data();
+        //fake_data();
     }
 
     public void fake_data(){
