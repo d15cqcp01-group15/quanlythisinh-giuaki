@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.CreateNewStudent"></activity>
-        <activity android:name=".avtivity.AddDepartment"></activity>
-        <activity android:name=".avtivity.AddSubject" />
+        <activity android:name=".activity.AddDepartment"></activity>
+        <activity android:name=".activity.AddSubject" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
