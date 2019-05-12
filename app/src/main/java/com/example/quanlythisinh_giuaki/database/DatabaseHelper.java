@@ -76,12 +76,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return deps;
     }
 
-    public List<Student> getStudents(String makhoa){
+    public List<Student> getStudents(int makhoa){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Student> students = new ArrayList<Student>();
         Cursor result = db.rawQuery("SELECT " + Student.COLUMN_HOTEN + ", " + Student.COLUMN_MASV
                 + " FROM " + Student.TABLE_NAME
-                + " WHERE " + Student.COLUMN_MAKHOA + " = " + makhoa, new String[] {});
+                + " WHERE " + Student.COLUMN_MAKHOA + " = " + String.valueOf(makhoa), new String[] {});
 
         result.moveToFirst();
 

@@ -11,15 +11,16 @@ import android.widget.TextView;
 
 import com.example.quanlythisinh_giuaki.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomSpinnerAdapter extends BaseAdapter {
+public class CustomSpinnerAdapter<T> extends BaseAdapter {
 
-    private List<String> mItems;
+    private ArrayList<T> mItems;
     private Context mContext;
     private ISpinnerCallback mCallback;
 
-    public CustomSpinnerAdapter(Context context, List<String> items, ISpinnerCallback callback){
+    public CustomSpinnerAdapter(Context context, ArrayList<T> items, ISpinnerCallback callback){
         this.mItems = items;
         this.mContext = context;
         this.mCallback = callback;
@@ -46,7 +47,7 @@ public class CustomSpinnerAdapter extends BaseAdapter {
 
         TextView name = convertView.findViewById(R.id.tvName);
         View divider = convertView.findViewById(R.id.divider);
-        name.setText(mItems.get(position));
+        name.setText(mItems.get(position).toString());
 
         if (position >= mItems.size() -1){
             divider.setVisibility(View.INVISIBLE);
@@ -64,7 +65,7 @@ public class CustomSpinnerAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public interface ISpinnerCallback{
-        public void onItemClicked(String text);
+    public interface ISpinnerCallback<T>{
+        public void onItemClicked(T t);
     }
 }

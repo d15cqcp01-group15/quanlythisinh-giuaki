@@ -1,6 +1,8 @@
 package com.example.quanlythisinh_giuaki.database;
 
-public class Department {
+import java.util.Objects;
+
+public class Department extends Object {
 
     public static final String TABLE_NAME = "khoa";
     public static final String COLUMN_MAKHOA = "makhoa";
@@ -44,4 +46,6 @@ public class Department {
     public String toString() {
         return tenkhoa;
     }
+
+
 }
