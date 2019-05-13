@@ -45,7 +45,12 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
 
         addControls();
         addEvents();
-        edtBirthDay.setOnClickListener(new View.OnClickListener() {
+        handleDatepipicker(edtBirthDay);
+
+    }
+
+    private void handleDatepipicker(final TextView textview){
+        textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -57,14 +62,14 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                edtBirthDay.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                textview.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
             }
         });
-    }
 
+    }
 
     private void addControls(){
         edtAddress = findViewById(R.id.edtAddress);
