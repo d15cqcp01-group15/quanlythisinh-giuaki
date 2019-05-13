@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.app.DatePickerDialog;
+import java.util.Calendar;
+import android.widget.DatePicker;
 
 import com.example.quanlythisinh_giuaki.Fragment.CustomSpinnerAdapter;
 import com.example.quanlythisinh_giuaki.R;
@@ -27,6 +30,7 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Spinner department;
+    DatePickerDialog picker;
 
     private int currDep_id = 0;
     private Button btnSaveStudent;
@@ -38,8 +42,27 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_student);
+
         addControls();
         addEvents();
+        edtBirthDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(CreateNewStudent.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                edtBirthDay.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
     }
 
 
