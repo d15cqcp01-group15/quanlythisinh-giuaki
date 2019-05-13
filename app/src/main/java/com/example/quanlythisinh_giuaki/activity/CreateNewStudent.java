@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.app.DatePickerDialog;
 import java.util.Calendar;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.example.quanlythisinh_giuaki.Fragment.CustomSpinnerAdapter;
 import com.example.quanlythisinh_giuaki.R;
@@ -107,13 +108,28 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 radioButton = (RadioButton) findViewById(selectedId);
                 Student st = new Student();
-                st.setHoten(edtName.getText().toString());
-                st.setDiachi(edtAddress.getText().toString());
-                st.setNgaysinh(edtBirthDay.getText().toString());
-                st.setPhai(radioButton.getText().toString());
-                st.setMakhoa(currDep_id);
-                mydb.insertStudent(st);
-                finish();
+                String tenSinhvien = edtName.getText().toString();
+                String diachi = edtAddress.getText().toString();
+                String ngaysinh = edtBirthDay.getText().toString();
+                String gioitinh = radioButton.getText().toString();
+                Boolean validate = tenSinhvien.matches("") || diachi.matches("") || ngaysinh.matches("") || gioitinh.matches("");
+                if (validate){
+                    Context context = getApplicationContext();
+                    CharSequence text = "Khong the de truong nao trong !";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else{
+                    st.setHoten(tenSinhvien);
+                    st.setDiachi(diachi);
+                    st.setNgaysinh(ngaysinh);
+                    st.setPhai(gioitinh);
+                    st.setMakhoa(currDep_id);
+                    mydb.insertStudent(st);
+                    finish();
+                }
+
             }
         });
     }
