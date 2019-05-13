@@ -46,7 +46,6 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
         addControls();
         addEvents();
         handleDatepipicker(edtBirthDay);
-
     }
 
     private void handleDatepipicker(final TextView textview){
@@ -68,7 +67,6 @@ public class CreateNewStudent extends AppCompatActivity implements OnClickListen
                 picker.show();
             }
         });
-
     }
 
     private void addControls(){
