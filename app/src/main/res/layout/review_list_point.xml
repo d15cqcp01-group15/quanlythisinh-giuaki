@@ -39,7 +39,7 @@
                     android:paddingTop="18dp">
 
                     <TextView
-                        android:id="@+id/tvKhoa"
+                        android:id="@+id/tvDep"
                         android:layout_width="147dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
@@ -56,7 +56,7 @@
                         android:tint="#000000" />
 
                     <Spinner
-                        android:id="@+id/cbKhoa"
+                        android:id="@+id/cbDep"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_gravity="bottom"
@@ -88,7 +88,7 @@
                     android:paddingTop="18dp">
 
                     <TextView
-                        android:id="@+id/tvMon"
+                        android:id="@+id/tvSubject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
@@ -105,7 +105,7 @@
                         android:tint="#000000" />
 
                     <Spinner
-                        android:id="@+id/cbMon"
+                        android:id="@+id/cbSub"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_gravity="bottom"
@@ -194,7 +194,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/score_recycleview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>

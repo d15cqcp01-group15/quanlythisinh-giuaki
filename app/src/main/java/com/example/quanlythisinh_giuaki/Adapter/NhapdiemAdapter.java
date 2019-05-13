@@ -5,38 +5,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.quanlythisinh_giuaki.EditScoreListener;
 import com.example.quanlythisinh_giuaki.ItemClickListener;
 import com.example.quanlythisinh_giuaki.R;
 import com.example.quanlythisinh_giuaki.database.Score;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class NhapdiemAdapter extends RecyclerView.Adapter<NhapdiemAdapter.MyViewHolder> {
-    private List<Score> scores;
-    private ItemClickListener callback;
+    private ArrayList<Score> scores = new ArrayList<>();
+
+    private EditScoreListener edit_score_callback;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tenSv, tenMonhoc, diem, stt;
+        public TextView tenSv, tenMonhoc, stt;
+        public EditText diem;
 
 
         public MyViewHolder(View view) {
             super(view);
             tenSv = (TextView) view.findViewById(R.id.txtTen);
+            stt = view.findViewById(R.id.txtStt);
             tenMonhoc = (TextView) view.findViewById(R.id.txtMon);
-            diem = (TextView) view.findViewById(R.id.txtDiem);
+            diem = (EditText) view.findViewById(R.id.txtDiem);
         }
 
     }
 
-    public void setItemClickListener(ItemClickListener itemClickListener)
+    public void setItemClickListener(EditScoreListener editScoreListener)
     {
-        this.callback = itemClickListener;
+        this.edit_score_callback = editScoreListener;
     }
 
-    public NhapdiemAdapter(List<Score> scores) {
+    public NhapdiemAdapter(ArrayList<Score> scores) {
         this.scores = scores;
     }
 
@@ -50,18 +57,26 @@ public class NhapdiemAdapter extends RecyclerView.Adapter<NhapdiemAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Score cl = scores.get(position);
-        holder.tenSv.setText(cl.getTenSv());
-        holder.tenMonhoc.setText(cl.getTenMonhoc());
-        if (cl.getDiem() != -1){
-            holder.diem.setText(Float.toString(cl.getDiem()));
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        Score sc = scores.get(position);
+        holder.tenSv.setText(sc.getTenSv());
+        holder.tenMonhoc.setText(sc.getTenMonhoc());
+        if (sc.getDiem() != -1){
+            holder.diem.setText(Float.toString(sc.getDiem()));
         }
-        holder.stt.setText(position);
-        holder.itemView.setOnClickListener(new OnClickListener() {
+        else{
+            holder.diem.setText("");
+        }
+        holder.stt.setText(String.valueOf(position));
+        holder.diem.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onClick(position);
+                float diem = -1;
+                if(!holder.diem.getText().toString().equals("")){
+                    diem = Float.parseFloat(holder.diem.getText().toString());
+                }
+                edit_score_callback.onClick(String.valueOf(scores.get(position).getMasv()) +
+                        String.valueOf(scores.get(position).getMamon()), diem);
             }
         });
     }

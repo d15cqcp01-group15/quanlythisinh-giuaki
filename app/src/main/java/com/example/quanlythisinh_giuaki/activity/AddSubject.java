@@ -1,4 +1,4 @@
-package com.example.quanlythisinh_giuaki.avtivity;
+package com.example.quanlythisinh_giuaki.activity;
 
 import android.content.Context;
 import android.content.Intent;

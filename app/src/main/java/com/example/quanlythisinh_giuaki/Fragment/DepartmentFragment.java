@@ -22,8 +22,6 @@ import com.example.quanlythisinh_giuaki.Adapter.NhapdiemAdapter;
 import com.example.quanlythisinh_giuaki.Adapter.StudentAdapter;
 import com.example.quanlythisinh_giuaki.Adapter.SubjectAdapter;
 import com.example.quanlythisinh_giuaki.R;
-import com.example.quanlythisinh_giuaki.avtivity.AddDepartment;
-import com.example.quanlythisinh_giuaki.avtivity.AddSubject;
 import com.example.quanlythisinh_giuaki.database.DatabaseHelper;
 import com.example.quanlythisinh_giuaki.database.Department;
 import com.example.quanlythisinh_giuaki.database.Student;
@@ -88,7 +86,7 @@ public class DepartmentFragment extends Fragment {
         btnAddDepartment.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddDepartment.start(getContext() );
+                com.example.quanlythisinh_giuaki.activity.AddDepartment.start(getContext() );
             }
         });
     }

@@ -55,4 +55,9 @@ public class Subject {
     public void setSotiet(int sotiet) {
         this.sotiet = sotiet;
     }
+
+    @Override
+    public String toString() {
+        return this.tenmon;
+    }
 }

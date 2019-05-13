@@ -17,6 +17,8 @@ public class Score {
     private String tenMonhoc;
     private int mamon;
     private float diem;
+    private boolean insert = false;
+    private boolean has_data = false;
 
 
     // Create table SQL query
@@ -77,4 +79,19 @@ public class Score {
         this.tenMonhoc = tenMonhoc;
     }
 
+    public boolean isInsert() {
+        return insert;
+    }
+
+    public void setInsert(boolean insert) {
+        this.insert = insert;
+    }
+
+    public boolean isHas_data() {
+        return has_data;
+    }
+
+    public void setHas_data(boolean has_data) {
+        this.has_data = has_data;
+    }
 }

@@ -21,7 +21,6 @@ import com.example.quanlythisinh_giuaki.Adapter.NhapdiemAdapter;
 import com.example.quanlythisinh_giuaki.Adapter.StudentAdapter;
 import com.example.quanlythisinh_giuaki.Adapter.SubjectAdapter;
 import com.example.quanlythisinh_giuaki.R;
-import com.example.quanlythisinh_giuaki.avtivity.AddSubject;
 import com.example.quanlythisinh_giuaki.database.DatabaseHelper;
 import com.example.quanlythisinh_giuaki.database.Department;
 import com.example.quanlythisinh_giuaki.database.Student;
@@ -86,7 +85,7 @@ public class SubjectFragment extends Fragment {
         btnAddSubject.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddSubject.start(getContext() );
+                com.example.quanlythisinh_giuaki.activity.AddSubject.start(getContext() );
             }
         });
     }
